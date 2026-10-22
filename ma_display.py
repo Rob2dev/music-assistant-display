@@ -283,6 +283,516 @@ STRINGS = {
         "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August",
                    "September", "Oktober", "November", "Dezember"],
     },
+    "es": {
+        "status_playing": "REPRODUCIENDO",
+        "status_paused": "EN PAUSA",
+        "status_idle": "INACTIVO",
+        "status_stopped": "DETENIDO",
+        "status_off": "APAGADO",
+        "status_unavailable": "NO DISPONIBLE",
+        "live": "EN VIVO",
+        "queue_empty": "Nada en la cola",
+        "player_unreachable": "Reproductor no disponible",
+        "resume_hint": "Última reproducción · pulsa play para reanudar",
+        "tab_fav": "Favoritas",
+        "tab_all": "Todas",
+        "stations_loading": "Cargando emisoras…",
+        "stations_none": "Sin emisoras",
+        "stations_failed": "No se pudieron cargar las emisoras",
+        "tap_retry": "Toca para reintentar",
+        "volume": "VOLUMEN",
+        "muted": "silenciado",
+        "failed": "Error",
+        "play_failed": "Error de reproducción",
+        "resume_failed": "No se pudo reanudar",
+        "retrying": "Reintentando…",
+        "err_no_ma": "Sin conexión con Music Assistant",
+        "err_no_player": "sendspin-cli no disponible",
+        "err_pairing": "Código de emparejamiento de MA: {pin}",
+        "clock_last": "Último: ",
+        "clock_hint": "toca para controlar",
+        "calibrate_title": "Calibrar pantalla táctil",
+        "calibrate_step": "Toca la cruz con precisión ({n}/3).",
+        "calibrate_done": "Calibración completada",
+        "menu_title": "MENÚ",
+        "menu_settings": "Ajustes",
+        "power_shutdown": "Apagar",
+        "power_restart": "Reiniciar",
+        "power_cancel": "Cancelar",
+        "power_busy_shutdown": "Apagando…",
+        "power_busy_restart": "Reiniciando…",
+        "power_wait_shutdown": "Espera un momento antes de desenchufar.",
+        "power_wait_restart": "La pantalla vuelve en un minuto aproximadamente.",
+        "power_failed": "Error en la orden de energía",
+        "status_starting": "INICIANDO",
+        "starting": "Iniciando…",
+        "tap_resume": "Toca para reanudar",
+        "date_short": "{day} de {month}",
+        "tab_rooms": "Salas",
+        "rooms_this": "Este reproductor",
+        "rooms_offline": "sin conexión",
+        "rooms_none": "No hay más salas",
+        "rooms_loading": "Cargando salas…",
+        "rooms_failed": "No se pudieron cargar las salas",
+        "room_add_q": "¿Añadir {name} al grupo?",
+        "room_remove_q": "¿Quitar {name} del grupo?",
+        "room_add": "Añadir",
+        "room_remove": "Quitar",
+        "room_failed": "No se pudo cambiar el grupo",
+        "room_done_add": "{name} añadido",
+        "room_done_remove": "{name} quitado",
+        "tab_general": "General",
+        "tab_display": "Pantalla",
+        "tab_info": "Info",
+        "set_language": "Idioma",
+        "set_cover": "Carátula",
+        "set_analyser": "Analizador de espectro",
+        "set_idle_style": "Pantalla en reposo",
+        "set_idle_after": "Reposo tras",
+        "set_night_after": "Modo noche tras",
+        "set_volume_step": "Paso de volumen",
+        "set_reset": "Restablecer valores",
+        "style_analog": "Analógico",
+        "style_digital": "Digital",
+        "off": "Apagado",
+        "info_host": "Nombre de host",
+        "info_ip": "Dirección IP",
+        "info_uptime": "Tiempo activo",
+        "info_ma": "Music Assistant",
+        "info_temp": "Temperatura",
+        "ma_connected": "conectado",
+        "ma_disconnected": "sin conexión",
+        "settings_reset_done": "Valores restablecidos",
+        "settings_failed": "No se pudo guardar",
+        "date": "{weekday} {day} de {month}",
+        "weekdays": ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"],
+        "months": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+    },
+    "it": {
+        "status_playing": "IN RIPRODUZIONE",
+        "status_paused": "IN PAUSA",
+        "status_idle": "INATTIVO",
+        "status_stopped": "FERMATO",
+        "status_off": "SPENTO",
+        "status_unavailable": "NON DISPONIBILE",
+        "live": "LIVE",
+        "queue_empty": "Niente in coda",
+        "player_unreachable": "Lettore non raggiungibile",
+        "resume_hint": "Ultimo ascolto · premi play per riprendere",
+        "tab_fav": "Preferiti",
+        "tab_all": "Tutte",
+        "stations_loading": "Caricamento stazioni…",
+        "stations_none": "Nessuna stazione",
+        "stations_failed": "Impossibile caricare le stazioni",
+        "tap_retry": "Tocca per riprovare",
+        "volume": "VOLUME",
+        "muted": "muto",
+        "failed": "Errore",
+        "play_failed": "Riproduzione non riuscita",
+        "resume_failed": "Impossibile riprendere",
+        "retrying": "Nuovo tentativo…",
+        "err_no_ma": "Nessuna connessione a Music Assistant",
+        "err_no_player": "sendspin-cli non raggiungibile",
+        "err_pairing": "Codice di abbinamento MA: {pin}",
+        "clock_last": "Ultimo: ",
+        "clock_hint": "tocca per controllare",
+        "calibrate_title": "Calibra il touch",
+        "calibrate_step": "Tocca la croce con precisione ({n}/3).",
+        "calibrate_done": "Calibrazione completata",
+        "menu_title": "MENU",
+        "menu_settings": "Impostazioni",
+        "power_shutdown": "Spegni",
+        "power_restart": "Riavvia",
+        "power_cancel": "Annulla",
+        "power_busy_shutdown": "Spegnimento…",
+        "power_busy_restart": "Riavvio…",
+        "power_wait_shutdown": "Attendi un momento prima di scollegare l'alimentazione.",
+        "power_wait_restart": "Il display torna tra circa un minuto.",
+        "power_failed": "Comando di alimentazione non riuscito",
+        "status_starting": "AVVIO",
+        "starting": "Avvio…",
+        "tap_resume": "Tocca per riprendere",
+        "date_short": "{day} {month}",
+        "tab_rooms": "Stanze",
+        "rooms_this": "Questo lettore",
+        "rooms_offline": "offline",
+        "rooms_none": "Nessun'altra stanza",
+        "rooms_loading": "Caricamento stanze…",
+        "rooms_failed": "Impossibile caricare le stanze",
+        "room_add_q": "Aggiungere {name} al gruppo?",
+        "room_remove_q": "Rimuovere {name} dal gruppo?",
+        "room_add": "Aggiungi",
+        "room_remove": "Rimuovi",
+        "room_failed": "Impossibile modificare il gruppo",
+        "room_done_add": "{name} aggiunto",
+        "room_done_remove": "{name} rimosso",
+        "tab_general": "Generale",
+        "tab_display": "Schermo",
+        "tab_info": "Info",
+        "set_language": "Lingua",
+        "set_cover": "Copertina",
+        "set_analyser": "Analizzatore di spettro",
+        "set_idle_style": "Schermata di riposo",
+        "set_idle_after": "Riposo dopo",
+        "set_night_after": "Modalità notte dopo",
+        "set_volume_step": "Passo volume",
+        "set_reset": "Ripristina predefiniti",
+        "style_analog": "Analogico",
+        "style_digital": "Digitale",
+        "off": "Spento",
+        "info_host": "Nome host",
+        "info_ip": "Indirizzo IP",
+        "info_uptime": "Tempo attivo",
+        "info_ma": "Music Assistant",
+        "info_temp": "Temperatura",
+        "ma_connected": "connesso",
+        "ma_disconnected": "non connesso",
+        "settings_reset_done": "Impostazioni ripristinate",
+        "settings_failed": "Salvataggio non riuscito",
+        "date": "{weekday} {day} {month}",
+        "weekdays": ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"],
+        "months": ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"],
+    },
+    "pt": {
+        "status_playing": "REPRODUZINDO",
+        "status_paused": "PAUSADO",
+        "status_idle": "INATIVO",
+        "status_stopped": "PARADO",
+        "status_off": "DESLIGADO",
+        "status_unavailable": "INDISPONÍVEL",
+        "live": "AO VIVO",
+        "queue_empty": "Nada na fila",
+        "player_unreachable": "Player inacessível",
+        "resume_hint": "Último tocado · toque em play para retomar",
+        "tab_fav": "Favoritas",
+        "tab_all": "Todas",
+        "stations_loading": "Carregando estações…",
+        "stations_none": "Nenhuma estação",
+        "stations_failed": "Não foi possível carregar as estações",
+        "tap_retry": "Toque para tentar de novo",
+        "volume": "VOLUME",
+        "muted": "sem som",
+        "failed": "Falhou",
+        "play_failed": "Falha na reprodução",
+        "resume_failed": "Não foi possível retomar",
+        "retrying": "Tentando de novo…",
+        "err_no_ma": "Sem conexão com o Music Assistant",
+        "err_no_player": "sendspin-cli inacessível",
+        "err_pairing": "Código de pareamento do MA: {pin}",
+        "clock_last": "Último: ",
+        "clock_hint": "toque para controlar",
+        "calibrate_title": "Calibrar o toque",
+        "calibrate_step": "Toque exatamente na cruz ({n}/3).",
+        "calibrate_done": "Calibração concluída",
+        "menu_title": "MENU",
+        "menu_settings": "Configurações",
+        "power_shutdown": "Desligar",
+        "power_restart": "Reiniciar",
+        "power_cancel": "Cancelar",
+        "power_busy_shutdown": "Desligando…",
+        "power_busy_restart": "Reiniciando…",
+        "power_wait_shutdown": "Aguarde um momento antes de tirar da tomada.",
+        "power_wait_restart": "O display volta em cerca de um minuto.",
+        "power_failed": "Falha no comando de energia",
+        "status_starting": "INICIANDO",
+        "starting": "Iniciando…",
+        "tap_resume": "Toque para retomar",
+        "date_short": "{day} de {month}",
+        "tab_rooms": "Salas",
+        "rooms_this": "Este player",
+        "rooms_offline": "offline",
+        "rooms_none": "Nenhuma outra sala",
+        "rooms_loading": "Carregando salas…",
+        "rooms_failed": "Não foi possível carregar as salas",
+        "room_add_q": "Adicionar {name} ao grupo?",
+        "room_remove_q": "Remover {name} do grupo?",
+        "room_add": "Adicionar",
+        "room_remove": "Remover",
+        "room_failed": "Não foi possível alterar o grupo",
+        "room_done_add": "{name} adicionado",
+        "room_done_remove": "{name} removido",
+        "tab_general": "Geral",
+        "tab_display": "Tela",
+        "tab_info": "Info",
+        "set_language": "Idioma",
+        "set_cover": "Capa",
+        "set_analyser": "Analisador de espectro",
+        "set_idle_style": "Tela de espera",
+        "set_idle_after": "Espera após",
+        "set_night_after": "Modo noturno após",
+        "set_volume_step": "Passo do volume",
+        "set_reset": "Restaurar padrões",
+        "style_analog": "Analógico",
+        "style_digital": "Digital",
+        "off": "Desligado",
+        "info_host": "Nome do host",
+        "info_ip": "Endereço IP",
+        "info_uptime": "Tempo ligado",
+        "info_ma": "Music Assistant",
+        "info_temp": "Temperatura",
+        "ma_connected": "conectado",
+        "ma_disconnected": "desconectado",
+        "settings_reset_done": "Padrões restaurados",
+        "settings_failed": "Não foi possível salvar",
+        "date": "{weekday}, {day} de {month}",
+        "weekdays": ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"],
+        "months": ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
+    },
+    "pl": {
+        "status_playing": "ODTWARZANIE",
+        "status_paused": "PAUZA",
+        "status_idle": "NIEAKTYWNY",
+        "status_stopped": "ZATRZYMANO",
+        "status_off": "WYŁĄCZONY",
+        "status_unavailable": "NIEDOSTĘPNY",
+        "live": "NA ŻYWO",
+        "queue_empty": "Kolejka jest pusta",
+        "player_unreachable": "Odtwarzacz niedostępny",
+        "resume_hint": "Ostatnio grane · naciśnij play, aby wznowić",
+        "tab_fav": "Ulubione",
+        "tab_all": "Wszystkie",
+        "stations_loading": "Ładowanie stacji…",
+        "stations_none": "Brak stacji",
+        "stations_failed": "Nie udało się wczytać stacji",
+        "tap_retry": "Dotknij, aby ponowić",
+        "volume": "GŁOŚNOŚĆ",
+        "muted": "wyciszono",
+        "failed": "Błąd",
+        "play_failed": "Błąd odtwarzania",
+        "resume_failed": "Nie udało się wznowić",
+        "retrying": "Ponawianie…",
+        "err_no_ma": "Brak połączenia z Music Assistant",
+        "err_no_player": "sendspin-cli niedostępny",
+        "err_pairing": "Kod parowania MA: {pin}",
+        "clock_last": "Ostatnio: ",
+        "clock_hint": "dotknij, aby sterować",
+        "calibrate_title": "Kalibracja dotyku",
+        "calibrate_step": "Dotknij dokładnie krzyżyka ({n}/3).",
+        "calibrate_done": "Kalibracja zakończona",
+        "menu_title": "MENU",
+        "menu_settings": "Ustawienia",
+        "power_shutdown": "Wyłącz",
+        "power_restart": "Uruchom ponownie",
+        "power_cancel": "Anuluj",
+        "power_busy_shutdown": "Wyłączanie…",
+        "power_busy_restart": "Ponowne uruchamianie…",
+        "power_wait_shutdown": "Poczekaj chwilę, zanim odłączysz zasilanie.",
+        "power_wait_restart": "Wyświetlacz wróci za około minutę.",
+        "power_failed": "Polecenie zasilania nie powiodło się",
+        "status_starting": "URUCHAMIANIE",
+        "starting": "Uruchamianie…",
+        "tap_resume": "Dotknij, aby wznowić",
+        "date_short": "{day} {month}",
+        "tab_rooms": "Pokoje",
+        "rooms_this": "Ten odtwarzacz",
+        "rooms_offline": "offline",
+        "rooms_none": "Brak innych pokoi",
+        "rooms_loading": "Ładowanie pokoi…",
+        "rooms_failed": "Nie udało się wczytać pokoi",
+        "room_add_q": "Dodać {name} do grupy?",
+        "room_remove_q": "Usunąć {name} z grupy?",
+        "room_add": "Dodaj",
+        "room_remove": "Usuń",
+        "room_failed": "Nie udało się zmienić grupy",
+        "room_done_add": "Dodano: {name}",
+        "room_done_remove": "Usunięto: {name}",
+        "tab_general": "Ogólne",
+        "tab_display": "Ekran",
+        "tab_info": "Info",
+        "set_language": "Język",
+        "set_cover": "Okładka",
+        "set_analyser": "Analizator widma",
+        "set_idle_style": "Ekran bezczynności",
+        "set_idle_after": "Bezczynność po",
+        "set_night_after": "Tryb nocny po",
+        "set_volume_step": "Krok głośności",
+        "set_reset": "Przywróć domyślne",
+        "style_analog": "Analogowy",
+        "style_digital": "Cyfrowy",
+        "off": "Wył.",
+        "info_host": "Nazwa hosta",
+        "info_ip": "Adres IP",
+        "info_uptime": "Czas pracy",
+        "info_ma": "Music Assistant",
+        "info_temp": "Temperatura",
+        "ma_connected": "połączono",
+        "ma_disconnected": "brak połączenia",
+        "settings_reset_done": "Przywrócono domyślne",
+        "settings_failed": "Nie udało się zapisać",
+        "date": "{weekday}, {day} {month}",
+        "weekdays": ["poniedziałek", "wtorek", "środa", "czwartek", "piątek", "sobota", "niedziela"],
+        "months": ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"],
+    },
+    "sv": {
+        "status_playing": "SPELAR NU",
+        "status_paused": "PAUSAD",
+        "status_idle": "INAKTIV",
+        "status_stopped": "STOPPAD",
+        "status_off": "AV",
+        "status_unavailable": "OTILLGÄNGLIG",
+        "live": "LIVE",
+        "queue_empty": "Inget i kön",
+        "player_unreachable": "Spelaren kan inte nås",
+        "resume_hint": "Senast spelat · tryck på play för att återuppta",
+        "tab_fav": "Favoriter",
+        "tab_all": "Alla",
+        "stations_loading": "Laddar stationer…",
+        "stations_none": "Inga stationer",
+        "stations_failed": "Kunde inte ladda stationer",
+        "tap_retry": "Tryck för att försöka igen",
+        "volume": "VOLYM",
+        "muted": "ljud av",
+        "failed": "Misslyckades",
+        "play_failed": "Uppspelningen misslyckades",
+        "resume_failed": "Kunde inte återuppta",
+        "retrying": "Försöker igen…",
+        "err_no_ma": "Ingen anslutning till Music Assistant",
+        "err_no_player": "sendspin-cli kan inte nås",
+        "err_pairing": "Parkopplingskod för MA: {pin}",
+        "clock_last": "Senast: ",
+        "clock_hint": "tryck för att styra",
+        "calibrate_title": "Kalibrera pekskärmen",
+        "calibrate_step": "Tryck exakt på korset ({n}/3).",
+        "calibrate_done": "Kalibreringen klar",
+        "menu_title": "MENY",
+        "menu_settings": "Inställningar",
+        "power_shutdown": "Stäng av",
+        "power_restart": "Starta om",
+        "power_cancel": "Avbryt",
+        "power_busy_shutdown": "Stänger av…",
+        "power_busy_restart": "Startar om…",
+        "power_wait_shutdown": "Vänta en stund innan du drar ur strömmen.",
+        "power_wait_restart": "Skärmen är tillbaka om ungefär en minut.",
+        "power_failed": "Strömkommandot misslyckades",
+        "status_starting": "STARTAR",
+        "starting": "Startar…",
+        "tap_resume": "Tryck för att återuppta",
+        "date_short": "{day} {month}",
+        "tab_rooms": "Rum",
+        "rooms_this": "Den här spelaren",
+        "rooms_offline": "offline",
+        "rooms_none": "Inga andra rum",
+        "rooms_loading": "Laddar rum…",
+        "rooms_failed": "Kunde inte ladda rum",
+        "room_add_q": "Lägga till {name} i gruppen?",
+        "room_remove_q": "Ta bort {name} från gruppen?",
+        "room_add": "Lägg till",
+        "room_remove": "Ta bort",
+        "room_failed": "Kunde inte ändra gruppen",
+        "room_done_add": "{name} tillagd",
+        "room_done_remove": "{name} borttagen",
+        "tab_general": "Allmänt",
+        "tab_display": "Skärm",
+        "tab_info": "Info",
+        "set_language": "Språk",
+        "set_cover": "Omslag",
+        "set_analyser": "Spektrumanalysator",
+        "set_idle_style": "Viloläge",
+        "set_idle_after": "Viloläge efter",
+        "set_night_after": "Nattläge efter",
+        "set_volume_step": "Volymsteg",
+        "set_reset": "Återställ standard",
+        "style_analog": "Analog",
+        "style_digital": "Digital",
+        "off": "Av",
+        "info_host": "Värdnamn",
+        "info_ip": "IP-adress",
+        "info_uptime": "Drifttid",
+        "info_ma": "Music Assistant",
+        "info_temp": "Temperatur",
+        "ma_connected": "ansluten",
+        "ma_disconnected": "inte ansluten",
+        "settings_reset_done": "Standard återställd",
+        "settings_failed": "Kunde inte spara",
+        "date": "{weekday} {day} {month}",
+        "weekdays": ["måndag", "tisdag", "onsdag", "torsdag", "fredag", "lördag", "söndag"],
+        "months": ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"],
+    },
+    "cs": {
+        "status_playing": "PŘEHRÁVÁ SE",
+        "status_paused": "POZASTAVENO",
+        "status_idle": "NEČINNÝ",
+        "status_stopped": "ZASTAVENO",
+        "status_off": "VYPNUTO",
+        "status_unavailable": "NEDOSTUPNÝ",
+        "live": "ŽIVĚ",
+        "queue_empty": "Ve frontě nic není",
+        "player_unreachable": "Přehrávač není dostupný",
+        "resume_hint": "Naposledy hráno · stiskněte play pro pokračování",
+        "tab_fav": "Oblíbené",
+        "tab_all": "Všechny",
+        "stations_loading": "Načítání stanic…",
+        "stations_none": "Žádné stanice",
+        "stations_failed": "Stanice se nepodařilo načíst",
+        "tap_retry": "Klepnutím to zkusíte znovu",
+        "volume": "HLASITOST",
+        "muted": "ztlumeno",
+        "failed": "Chyba",
+        "play_failed": "Přehrávání se nezdařilo",
+        "resume_failed": "Pokračování se nezdařilo",
+        "retrying": "Zkouším znovu…",
+        "err_no_ma": "Bez spojení s Music Assistant",
+        "err_no_player": "sendspin-cli není dostupný",
+        "err_pairing": "Párovací kód pro MA: {pin}",
+        "clock_last": "Naposledy: ",
+        "clock_hint": "klepnutím ovládejte",
+        "calibrate_title": "Kalibrace dotyku",
+        "calibrate_step": "Klepněte přesně na křížek ({n}/3).",
+        "calibrate_done": "Kalibrace dokončena",
+        "menu_title": "MENU",
+        "menu_settings": "Nastavení",
+        "power_shutdown": "Vypnout",
+        "power_restart": "Restartovat",
+        "power_cancel": "Zrušit",
+        "power_busy_shutdown": "Vypínání…",
+        "power_busy_restart": "Restartování…",
+        "power_wait_shutdown": "Chvíli počkejte, než odpojíte napájení.",
+        "power_wait_restart": "Displej bude zpět asi za minutu.",
+        "power_failed": "Příkaz napájení se nezdařil",
+        "status_starting": "SPOUŠTÍ SE",
+        "starting": "Spouštění…",
+        "tap_resume": "Klepnutím pokračujte",
+        "date_short": "{day}. {month}",
+        "tab_rooms": "Místnosti",
+        "rooms_this": "Tento přehrávač",
+        "rooms_offline": "offline",
+        "rooms_none": "Žádné další místnosti",
+        "rooms_loading": "Načítání místností…",
+        "rooms_failed": "Místnosti se nepodařilo načíst",
+        "room_add_q": "Přidat {name} do skupiny?",
+        "room_remove_q": "Odebrat {name} ze skupiny?",
+        "room_add": "Přidat",
+        "room_remove": "Odebrat",
+        "room_failed": "Skupinu se nepodařilo změnit",
+        "room_done_add": "{name} přidáno",
+        "room_done_remove": "{name} odebráno",
+        "tab_general": "Obecné",
+        "tab_display": "Displej",
+        "tab_info": "Info",
+        "set_language": "Jazyk",
+        "set_cover": "Obal alba",
+        "set_analyser": "Analyzátor spektra",
+        "set_idle_style": "Spořič",
+        "set_idle_after": "Spořič po",
+        "set_night_after": "Noční režim po",
+        "set_volume_step": "Krok hlasitosti",
+        "set_reset": "Obnovit výchozí",
+        "style_analog": "Analogový",
+        "style_digital": "Digitální",
+        "off": "Vypnuto",
+        "info_host": "Název hostitele",
+        "info_ip": "Adresa IP",
+        "info_uptime": "Doba provozu",
+        "info_ma": "Music Assistant",
+        "info_temp": "Teplota",
+        "ma_connected": "připojeno",
+        "ma_disconnected": "nepřipojeno",
+        "settings_reset_done": "Výchozí obnoveno",
+        "settings_failed": "Uložení se nezdařilo",
+        "date": "{weekday} {day}. {month}",
+        "weekdays": ["pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota", "neděle"],
+        "months": ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"],
+    },
 }
 _lang = "en"
 
@@ -309,9 +819,11 @@ def fmt_date(now):
 # Settings that can be changed on the screen (menu -> Settings). They are saved in
 # state_dir/settings.json, which the service may write (it cannot write /etc/ma-display/config.json, and
 # that file may hold the token), and they win over config.json. The last entry is an action, not a setting.
-LANG_NAMES = {"en": "English", "nl": "Nederlands", "fr": "Français", "de": "Deutsch"}
+LANG_NAMES = {"en": "English", "nl": "Nederlands", "fr": "Français", "de": "Deutsch", "es": "Español",
+              "it": "Italiano", "pt": "Português", "pl": "Polski", "sv": "Svenska", "cs": "Čeština"}
+LANGUAGE_CODES = list(LANG_NAMES)
 SETTING_DEFS = [
-    {"tab": "general", "key": "language", "label": "set_language", "kind": "cycle", "values": ["en", "nl", "fr", "de"]},
+    {"tab": "general", "key": "language", "label": "set_language", "kind": "cycle", "values": LANGUAGE_CODES},
     {"tab": "general", "key": "volume_step", "label": "set_volume_step", "kind": "cycle", "values": [1, 2, 5, 10]},
     {"tab": "general", "label": "set_reset", "kind": "action"},
     {"tab": "display", "key": "show_cover", "label": "set_cover", "kind": "toggle"},
@@ -1425,23 +1937,34 @@ def button_at(x, y):
 ST_COLS, ST_ROWS = 3, 2
 ST_TILE_W, ST_TILE_H, ST_GAP = 144, 118, 8
 ST_X0, ST_Y0 = 16, 56
-ST_TABS = {"fav": (12, 132), "all": (132, 212), "rooms": (212, 300)}
-ST_HEADER = {"left": (300, 344), "right": (384, 428), "close": (428, 480)}
+ST_TAB_NAMES = ("fav", "all", "rooms")
+ST_HEADER = {"left": (336, 368), "right": (404, 436), "close": (436, 480)}
 STATIONS_SECS = 30
 # Rooms tab: the players that can be in this player's group, one row each (a switch on the right).
 ROOM_ROWS, ROOM_Y0, ROOM_ROW_H, ROOM_PITCH = 4, 100, 44, 48
 ROOM_CONFIRM = (56, 62, 424, 258)
 ROOM_CONFIRM_BUTTONS = {"yes": (80, 176, 236, 232), "no": (244, 176, 400, 232)}
 # Settings screen: two tabs, then six rows (five settings and a reset action) or the system info.
-SET_TABS = {"general": (12, 120), "display": (120, 220), "info": (220, 300)}
+SET_TAB_NAMES = ("general", "display", "info")
 SET_Y0, SET_ROW_H, SET_ROW_PITCH = 56, 40, 43
 SETTINGS_SECS = 60  # the screen closes by itself after this long without a tap
+
+
+def tab_ranges(names):
+    """Tab areas laid out by the width of their translated labels (12 px padding on both sides), so a long
+    label in any language neither overlaps its neighbour nor leaves a tap area that does not match the text."""
+    f, out, x = font(16, True), {}, 12
+    for name in names:
+        width = int(f.getlength(tr("tab_" + name))) + 24
+        out[name] = (x, x + width)
+        x += width
+    return out
 
 
 def stations_hit(x, y):
     """What was tapped on the station screen: ('tab', name) / ('left',) / ('tile', index) / ..."""
     if y < ST_Y0 - 4:
-        for name, (x0, x1) in ST_TABS.items():
+        for name, (x0, x1) in tab_ranges(ST_TAB_NAMES).items():
             if x0 <= x < x1:
                 return ("tab", name)
         for name, (x0, x1) in ST_HEADER.items():
@@ -1472,7 +1995,7 @@ def confirm_button_at(x, y):
 def settings_hit(x, y, n_rows):
     """What was tapped on the settings screen: ('tab', name) / ('close',) / ('row', index, part)."""
     if y < SET_Y0 - 4:
-        for name, (x0, x1) in SET_TABS.items():
+        for name, (x0, x1) in tab_ranges(SET_TAB_NAMES).items():
             if x0 <= x < x1:
                 return ("tab", name)
         return ("close",) if x >= 428 else None
@@ -1481,6 +2004,17 @@ def settings_hit(x, y, n_rows):
         return None
     part = "minus" if 288 <= x < 328 else "plus" if 416 <= x < 456 else "row"
     return ("row", i, part)
+
+
+def picker_hit(x, y):
+    """The language picker: a 2-column grid. Returns an index into LANGUAGE_CODES, 'close' or None."""
+    if y < SET_Y0 - 4:
+        return "close" if x >= 428 else None
+    row, within = divmod(y - SET_Y0, 50)
+    col = 0 if 16 <= x < 236 else 1 if 244 <= x < 464 else None
+    if col is None or within >= 44 or row > 4 or row * 2 + col >= len(LANGUAGE_CODES):
+        return None
+    return row * 2 + col
 
 
 def popup_button_at(x, y):
@@ -1744,7 +2278,9 @@ class IdleClock:
         yw = (84 if last else 118) + dy
         weekday = tr("weekdays")[now.weekday()]
         date = tr("date_short", day=now.day, month=tr("months")[now.month - 1])
-        d.text((x0, yw), ellipsize(d, weekday, font(20, True), 156), font=font(20, True), fill=text)
+        wd_font = next((font(s, True) for s in (20, 19, 18, 17) if d.textlength(weekday, font=font(s, True)) <= 156),
+                       font(17, True))
+        d.text((x0, yw), ellipsize(d, weekday, wd_font, 156), font=wd_font, fill=text)
         d.text((x0, yw + 30), ellipsize(d, date, font(17), 156), font=font(17),
                fill=self._mix((120, 120, 132), self.accent, tint * 0.6))
         self.tile_box = None
@@ -1894,6 +2430,7 @@ class Renderer:
         label = tr("status_" + state) if ("status_" + state) in STRINGS["en"] else state.upper()
         # The label always states the status (also for radio); the LIVE badge next to it states the kind of source.
         d.text((tx, 18), label, font=font(13, True), fill=self.accent if state == "playing" else FG_DIM)
+        left_end = tx + d.textlength(label, font=font(13, True))
         if is_live:
             # LIVE badge right next to the label (red while playing)
             bx = int(tx + d.textlength(label, font=font(13, True)) + 8)
@@ -1902,9 +2439,13 @@ class Renderer:
             d.rounded_rectangle((bx, 16, bx + lw + 20, 33), 8, fill=ERROR if state == "playing" else (90, 90, 100))
             d.ellipse((bx + 5, 21, bx + 11, 27), fill=FG)
             d.text((bx + 14, 18), live, font=font(11, True), fill=FG)
-        # Time on the right of the label row: same small type, dimmed, so it stays secondary.
+            left_end = bx + lw + 20
+        # Time on the right of the label row: same small type, dimmed, so it stays secondary. A long status in
+        # some languages (plus the LIVE badge) leaves no room for it: then it is left out.
         now_txt = datetime.datetime.now().strftime("%H:%M")
-        d.text((tx + tw - d.textlength(now_txt, font=font(13, True)), 18), now_txt, font=font(13, True), fill=FG_SOFT)
+        time_w = d.textlength(now_txt, font=font(13, True))
+        if left_end + 12 <= tx + tw - time_w:
+            d.text((tx + tw - time_w, 18), now_txt, font=font(13, True), fill=FG_SOFT)
 
         # Title and artist: if they do not fit on 2 lines, use one scrolling line (see Marquee).
         # The scrolling text itself is not drawn here but by App.animated_strips.
@@ -2000,7 +2541,7 @@ class Renderer:
         """Station picker: tabs, 3x2 glass tiles with logo and name."""
         img = self.background(cover).copy()
         d = ImageDraw.Draw(img)
-        for name, (x0, x1) in ST_TABS.items():
+        for name, (x0, x1) in tab_ranges(ST_TAB_NAMES).items():
             label = tr("tab_" + name)
             active = name == tab
             f = font(16, True)
@@ -2163,7 +2704,7 @@ class Renderer:
         """Settings: tabs (Settings / Info), then the setting rows or the system info."""
         img = self.background(None).copy()
         d = ImageDraw.Draw(img)
-        for name, (x0, x1) in SET_TABS.items():
+        for name, (x0, x1) in tab_ranges(SET_TAB_NAMES).items():
             label, f = tr("tab_" + name), font(16, True)
             d.text((x0 + 12, 16), label, font=f, fill=FG if name == tab else FG_FAINT)
             if name == tab:
@@ -2201,6 +2742,24 @@ class Renderer:
                     d.text((372, y + SET_ROW_H // 2), setting_text(sd, cfg[sd["key"]]), font=font(15, True),
                            fill=self.accent, anchor="mm")
         self._overlay(d, None, toast)
+        return img
+
+    def language_picker(self, active, pressed=None):
+        """The settings screen's language list: every language by its own name, the active one marked."""
+        img = self.background(None).copy()
+        d = ImageDraw.Draw(img)
+        label, f = tr("set_language"), font(16, True)
+        d.text((24, 16), label, font=f, fill=FG)
+        d.rounded_rectangle((24, 40, 24 + d.textlength(label, font=f), 43), 2, fill=self.accent)
+        cx0, cx1 = ST_HEADER["close"]
+        icon(d, "close", (cx0 + cx1) // 2, 26, 8, FG_DIM)
+        for i, code in enumerate(LANGUAGE_CODES):
+            x, y = (16, 244)[i % 2], SET_Y0 + (i // 2) * 50
+            on = code == active
+            self.glass(img, (x, y, x + 220, y + 44), radius=12, alpha=0.12 if on else 0.08, light=pressed == i)
+            if on:
+                d.rounded_rectangle((x, y, x + 219, y + 43), 12, outline=self.accent, width=2)
+            d.text((x + 18, y + 11), LANG_NAMES[code], font=font(17, True), fill=self.accent if on else FG)
         return img
 
     def clock(self, data, error, toast=None):
@@ -2313,6 +2872,7 @@ class App:
         self.base_cfg = load_config(use_settings=False)  # what "reset to defaults" goes back to
         self.settings_until = 0
         self.set_tab = "general"
+        self.set_picker = False  # the language list is open
         self.room_confirm = None  # {"id", "name", "add"} while the add/remove confirmation is open
         self.room_confirm_until = 0
         self.idle_anim = None  # the IdleClock while its hands have to be redrawn, else None
@@ -2517,6 +3077,9 @@ class App:
         if now < self.settings_until:
             st = self.sock.snapshot() if not self.demo else None
             info = system_info(bool(st and "connected" in (st.get("server") or "")))
+            if self.set_picker:
+                return self.r.language_picker(_lang, self.pressed if isinstance(self.pressed, int) else None), \
+                    "settings", data
             return self.r.settings_screen(self.cfg, self.set_tab, self.pressed, info, self.toast), "settings", data
         idle_long = now - self.last_active > self.cfg["clock_after_min"] * 60
         self.idle_anim = None
@@ -2658,11 +3221,21 @@ class App:
     def settings_tap(self, x, y):
         now = time.time()
         self.settings_until = now + SETTINGS_SECS
+        if self.set_picker:
+            pick = picker_hit(x, y)
+            if pick == "close":
+                self.set_picker = False
+            elif pick is not None:
+                self.pressed, self.pressed_until = pick, now + 0.25
+                self.apply_setting("language", LANGUAGE_CODES[pick])
+                self.set_picker = False
+            return
         hit = settings_hit(x, y, len(settings_rows(self.set_tab)))
         if hit is None:
             return
         if hit[0] == "close":
             self.settings_until = 0
+            self.set_picker = False
         elif hit[0] == "tab":
             self.set_tab = hit[1]
         elif self.set_tab in ("general", "display"):
@@ -2674,6 +3247,9 @@ class App:
             cur = self.cfg[sd["key"]]
             if sd["kind"] == "toggle":
                 self.apply_setting(sd["key"], not cur)
+                return
+            if sd["key"] == "language":
+                self.set_picker = True  # too many languages to cycle through: open the list
                 return
             if sd["kind"] == "cycle":
                 values = sd["values"]
@@ -2732,7 +3308,7 @@ class App:
             self.pressed, self.pressed_until = btn, now + 0.25
             self.power_until = 0
             if btn == "settings":
-                self.settings_until, self.set_tab = now + SETTINGS_SECS, "general"
+                self.settings_until, self.set_tab, self.set_picker = now + SETTINGS_SECS, "general", False
             elif btn != "cancel":
                 self.run_power(btn)
             return

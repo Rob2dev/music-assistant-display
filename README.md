@@ -8,7 +8,7 @@ goodtft 3.5" 480x320 SPI display (ILI9486) and an XPT2046 touch panel.
 
 Shows title, artist, album, cover art, progress and a live spectrum, lets you control playback and
 volume, pick radio stations, and resumes the last station after a restart. The UI is available in
-English, Dutch, French and German.
+English, Dutch, French, German, Spanish, Italian, Portuguese, Polish, Swedish and Czech.
 
 ![The screens: player with cover art, radio with analyser, player without cover, station picker, rooms, idle clock, night mode, menu and settings](docs/screenshots/overview.png)
 
@@ -156,7 +156,7 @@ The service runs as `sendspin-cli` because its control socket is owner-only (060
 
 | Key | Meaning |
 |---|---|
-| `language` | `en`, `nl`, `fr` or `de`. Empty = derived from `$LANG`, otherwise English (also on the settings screen) |
+| `language` | `en`, `nl`, `fr`, `de`, `es`, `it`, `pt`, `pl`, `sv` or `cs`. Empty = derived from `$LANG`, otherwise English (also on the settings screen) |
 | `fb`, `fb_name` | framebuffer of the panel: `auto` (default) finds it by the driver name `fb_name`, or give a path such as `/dev/fb1` |
 | `ma_url`, `ma_token` | Music Assistant API for the station picker and resuming. Without both the picker is off |
 | `ma_player_name` | name of the player in Music Assistant; defaults to the Pi's hostname |
@@ -168,7 +168,13 @@ The service runs as `sendspin-cli` because its control socket is owner-only (060
 | `calibration` | touch calibration, written by `--calibrate` (see "Touch calibration") |
 
 Translations live in the `STRINGS` table at the top of `ma_display.py`. To add a language, copy the
-`en` block, translate it and add it to `STRINGS`. Missing keys fall back to English.
+`en` block, translate it, add it to `STRINGS` and to `LANG_NAMES` (its own name, shown in the language list),
+then run `tools/screenshots.py` or look at the screens to check that the texts fit. Missing keys fall back to
+English. The font (DejaVu Sans) covers Latin, Cyrillic and Greek; Chinese, Japanese, Korean, Thai and Hindi need
+another font, and right-to-left languages would need the layout mirrored.
+
+**The translations other than English are drafts.** They were written with the help of an AI and have not been
+reviewed by native speakers. Corrections are very welcome. The Portuguese is leaning Brazilian.
 
 ## Network
 
@@ -238,7 +244,7 @@ power menu (or a socket timer).
 
 | Tab | Setting | Values |
 |---|---|---|
-| General | Language | English, Nederlands, Français, Deutsch (applies at once) |
+| General | Language | opens a list of the ten languages, each by its own name (applies at once) |
 | General | Volume step | 1, 2, 5, 10 |
 | General | Reset to defaults | back to the values in `config.json` |
 | Display | Cover art | on / off |
