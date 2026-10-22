@@ -394,8 +394,11 @@ systemctl start ma-display
 ```
 ma_display/
   __main__.py        entry point (python -m ma_display): arguments, logging
-  app.py             the application: merges state, handles taps, runs the main loop
-  renderer.py        draws every screen
+  app/               the application, one file per concern: base (state it keeps), state (merging the
+                     player, Sendspin and MA), actions (playback, rooms, power), frames (which screen is
+                     current), taps (what a tap does, settings), loop (threads, main loop, animation)
+  renderer/          draws every screen, one file per group: base (background, glass), player, stations
+                     (picker, rooms), popups (volume, power menu), settings_screens, plain (clock, message)
   layout.py          coordinates of the screens and the tap areas that match them
   widgets.py         scrolling text, the spectrum, the idle clock
   gfx.py             colours, fonts and small drawing helpers
