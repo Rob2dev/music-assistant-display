@@ -1,4 +1,4 @@
-# ma-display
+# Music Assistant Display
 
 > Unofficial project, not affiliated with Music Assistant or the Open Home Foundation.
 
