@@ -3,8 +3,8 @@
 > Unofficial project, not affiliated with Music Assistant or the Open Home Foundation.
 
 A now-playing touch screen for a Raspberry Pi that runs as a [Music Assistant](https://music-assistant.io)
-player through `sendspin-cli`. Developed on a Raspberry Pi 2 with a goodtft 3.5" 480x320 SPI display
-(ILI9486) and an XPT2046 touch panel.
+player through `sendspin-cli`. Developed on a Raspberry Pi 2 and also tested on a Raspberry Pi 3, with a
+goodtft 3.5" 480x320 SPI display (ILI9486) and an XPT2046 touch panel.
 
 Shows title, artist, album, cover art, progress and a live spectrum, lets you control playback and
 volume, pick radio stations, and resumes the last station after a restart. The UI is available in
@@ -34,6 +34,19 @@ of the panel.*
   shown right away, before the Sendspin metadata arrives, and **play** resumes it when the queue is empty.
 - Loading the station list and starting a station are retried three times; if the list cannot be
   loaded, tap the screen to try again.
+
+## Supported hardware
+
+| Board | Status |
+|---|---|
+| Raspberry Pi 2 Model B | Developed and tested on this one. All timings in this README were measured on it. |
+| Raspberry Pi 3 | Tested by the author. |
+| Raspberry Pi 4 | Not tested. The SPI controller driver (`spi_bcm2835`) and the display overlay are the same as on the boards above, so it should work, but that is an expectation and not a result. |
+| Raspberry Pi 5 | Not tested. Its SPI controller is part of the RP1 chip and I did not check which driver that uses, so the optional `boot/modules-load-ma-display.conf` (which names `spi_bcm2835`) does not apply there. The rest is unverified. |
+
+The program itself needs only a Linux framebuffer, an evdev touch device and `sendspin-cli`. What is specific to a
+board is the display driver and overlay (see below) and the optional early-boot file. If you try another board,
+please open an issue with what worked and what did not.
 
 ## The display and touch drivers
 
