@@ -387,6 +387,20 @@ systemctl start ma-display
 - Test picture without a display: `ma_display.py --demo --png /tmp/demo.png` (set `LANG=de_DE.UTF-8` to try a language)
 - Config: `/etc/ma-display/config.json`; state: `/var/lib/ma-display`
 
+## Tests
+
+```
+python3 -m unittest discover -s tests -t tests
+```
+
+Only the standard library is needed. The tests that draw text need the DejaVu fonts (`fonts-dejavu-core`) and the
+touch test needs `python-evdev`; without them those tests are skipped, not failed. On a Pi 2 the whole set takes about
+a minute. They cover the settings storage, every translation (complete, same placeholders, and whether each text
+fits its place), the tap areas, what the app does on a tap (menu, settings, language list, rooms), the Music
+Assistant client (group list, retries, what is remembered), long-press detection with a fake touch device, and that
+every screen draws in every language. When you add a language, `tests/test_translations.py` tells you what is
+missing or too long.
+
 ## Testing the visualizer
 
 `tools/gen_sweep.py out.wav` makes a test signal: a log sweep 40 Hz-16 kHz (24 s) followed by
