@@ -1,0 +1,8 @@
+{
+  "language": "en",
+  "ma_url": "http://192.168.1.10:8095",
+  "ma_token": "",
+  "ma_player_name": "my-player",
+  "sendspin_name": "my-player display",
+  "clock_after_min": 5
+}

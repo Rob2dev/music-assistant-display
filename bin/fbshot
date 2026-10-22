@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+# Dumps the panel's framebuffer (RGB565) to a PNG: fbshot [out.png]
+import sys
+from PIL import Image
+import glob,os
+W,H=480,320
+# The SPI panel is not always fb0 (the HDMI firmware framebuffer can come first): find it by driver name.
+fb=next((("/dev/"+os.path.basename(p)) for p in sorted(glob.glob("/sys/class/graphics/fb[0-9]*"))
+         if open(p+"/name").read().strip()=="ili9486drmfb"),"/dev/fb0")
+d=open(fb,"rb").read(W*H*2)
+px=bytearray()
+for i in range(0,len(d),2):
+    v=d[i]|d[i+1]<<8
+    px+=bytes(((v>>11&31)*255//31,(v>>5&63)*255//63,(v&31)*255//31))
+Image.frombytes("RGB",(W,H),bytes(px)).save(sys.argv[1] if len(sys.argv)>1 else "/tmp/fbshot.png")

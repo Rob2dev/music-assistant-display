@@ -1,0 +1,21 @@
+[Unit]
+Description=Now-playing screen (SPI display) for the Music Assistant player
+# Deliberately no ordering on the network or on sendspin-cli: the screen starts as soon as the display
+# driver is up and shows "Starting..." until the player answers. The program waits for the
+# framebuffer, the touch device and the network by itself.
+
+[Service]
+# Run as sendspin-cli, because its control socket is owner-only (0600).
+User=sendspin-cli
+SupplementaryGroups=video input
+StateDirectory=ma-display
+# Switch the tty1 console off (as root) so it does not draw over the picture.
+ExecStartPre=+/usr/local/bin/ma-display-tty 1
+ExecStart=/opt/ma-display/venv/bin/python /opt/ma-display/ma_display.py
+ExecStopPost=+/usr/local/bin/ma-display-tty 0
+Restart=always
+RestartSec=3
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

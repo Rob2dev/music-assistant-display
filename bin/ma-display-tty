@@ -1,0 +1,5 @@
+#!/usr/bin/python3
+# Put tty1 into graphics (1) or text mode (0), so the console does not draw over the display.
+import fcntl, os, sys
+fd = os.open("/dev/tty1", os.O_WRONLY)
+fcntl.ioctl(fd, 0x4B3A, int(sys.argv[1]))

@@ -1,0 +1,17 @@
+// Lets the ma-display service user shut down and restart the Pi from the touch screen.
+// Install as /etc/polkit-1/rules.d/50-ma-display-power.rules (root:root, 0644); polkit picks it up
+// without a restart. Adjust the user name if the service does not run as "sendspin-cli".
+//
+// Deliberately not included: the "-ignore-inhibit" actions, so a program holding a shutdown inhibitor
+// can still block the shutdown.
+polkit.addRule(function(action, subject) {
+    var allowed = [
+        "org.freedesktop.login1.power-off",
+        "org.freedesktop.login1.power-off-multiple-sessions",
+        "org.freedesktop.login1.reboot",
+        "org.freedesktop.login1.reboot-multiple-sessions"
+    ];
+    if (subject.user == "sendspin-cli" && allowed.indexOf(action.id) >= 0) {
+        return polkit.Result.YES;
+    }
+});

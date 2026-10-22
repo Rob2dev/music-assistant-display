@@ -1,0 +1,9 @@
+# Pip packages in /opt/ma-display/venv (python3 -m venv --system-site-packages).
+# Install with: pip install --no-deps -r requirements.txt
+# aiosendspin has to match Music Assistant 2.10.6 (9.1.x); 10.x speaks a newer protocol.
+aiosendspin==9.1.1
+cpace==0.1.0
+noiseprotocol==0.3.1
+# From apt (compiled; too slow to build on a Pi 2):
+#   python3-pil python3-evdev python3-websocket python3-aiohttp python3-cryptography
+#   python3-orjson python3-zeroconf python3-mashumaro fonts-dejavu-core

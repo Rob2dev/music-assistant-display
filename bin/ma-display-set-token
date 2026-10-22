@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+"""Store the Music Assistant token for the now-playing screen (reads it from stdin)."""
+import getpass, json, os, shutil, subprocess, sys
+p = "/etc/ma-display/config.json"
+tok = (getpass.getpass("Paste the MA token and press Enter: ") if sys.stdin.isatty() else sys.stdin.readline()).strip()
+if not tok:
+    sys.exit("no token entered")
+try:
+    d = json.load(open(p))
+except FileNotFoundError:
+    d = {}
+d["ma_token"] = tok
+os.makedirs(os.path.dirname(p), exist_ok=True)
+with open(p + ".tmp", "w") as f:
+    json.dump(d, f, indent=2)
+shutil.chown(p + ".tmp", "root", "sendspin-cli")
+os.chmod(p + ".tmp", 0o640)
+os.replace(p + ".tmp", p)
+subprocess.run(["systemctl", "restart", "ma-display"], check=False)
+print("token saved, ma-display restarted")
