@@ -40,13 +40,41 @@ of the panel.*
 | Board | Status |
 |---|---|
 | Raspberry Pi 2 Model B | Developed and tested on this one. All timings in this README were measured on it. |
-| Raspberry Pi 3 | Tested by the author. |
+| Raspberry Pi 3 | Tested by the author, with the same SD card (so the same 32-bit Raspberry Pi OS install) as the Pi 2. |
 | Raspberry Pi 4 | Not tested. The SPI controller driver (`spi_bcm2835`) and the display overlay are the same as on the boards above, so it should work, but that is an expectation and not a result. |
 | Raspberry Pi 5 | Not tested. Its SPI controller is part of the RP1 chip and I did not check which driver that uses, so the optional `boot/modules-load-ma-display.conf` (which names `spi_bcm2835`) does not apply there. The rest is unverified. |
 
 The program itself needs only a Linux framebuffer, an evdev touch device and `sendspin-cli`. What is specific to a
 board is the display driver and overlay (see below) and the optional early-boot file. If you try another board,
 please open an issue with what worked and what did not.
+
+## Parts
+
+What it was built with. None of this is a recommendation of a brand; it is what was used.
+
+**Required**
+
+| Part | Notes |
+|---|---|
+| Raspberry Pi 2 Model B or Raspberry Pi 3 | Both tested, see above. |
+| 3.5" SPI display, 480x320, ILI9486 controller, XPT2046 touch | A goodtft module that works with `dtoverlay=piscreen` (the "piscreen" pinout), connected to the GPIO header. The layout is drawn for 480x320; other panels need another overlay and probably another resolution. |
+| microSD card | 8 GB or more is plenty: the system used about 2.7 GB. A quality card is worth it, see [Making the SD card last](#making-the-sd-card-last). |
+| Power supply, 5 V | Use one that is rated for the Pi (2 A or more) and check `vcgencmd get_throttled` says `0x0`. |
+| A network connection | Ethernet, or Wi-Fi. A Pi 2 has no Wi-Fi: a USB dongle was used (a Realtek RTL8188EUS one). A Pi 3 has it built in. |
+| Speakers or an amplifier | Connected to the Pi's 3.5 mm jack, which is the default output. |
+
+**Software**
+
+- Raspberry Pi OS (Debian 13 "trixie"), see `requirements.txt` for the Python packages.
+- [`sendspin-cli`](https://github.com/Sendspin) running as a service: it is the audio player this display controls.
+- A Music Assistant server. Tested with 2.10.6; `aiosendspin` has to match the server version (see `requirements.txt`).
+
+**Optional**
+
+| Part | Notes |
+|---|---|
+| USB to S/PDIF adapter with an optical (TOSLINK) and/or coax output, plus a TOSLINK cable | For digital audio to an amplifier or powered speakers instead of the analog jack. Not yet tested with this project; a bare TOSLINK transmitter module does not work on its own, because the Pi cannot make an S/PDIF signal itself. |
+| A button on GPIO3 (`dtoverlay=gpio-shutdown`) | To start the Pi again after a shutdown from the menu; otherwise unplug and replug the power. |
 
 ## The display and touch drivers
 
