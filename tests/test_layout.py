@@ -72,6 +72,62 @@ class LanguagePicker(Base):
         self.assertIsNone(m.picker_hit(100, m.SET_Y0 + 5 * 50 + 5))                   # below the last row
 
 
+@needs_fonts
+class DrawnMatchesTappable(Base):
+    """Record the glass panels the renderer really draws, and tap the middle of each: the tap has to land on it."""
+
+    def drawn(self, draw):
+        boxes = []
+        original = m.Renderer.glass
+        m.Renderer.glass = lambda self, img, box, *a, **k: (boxes.append(tuple(box)), original(self, img, box, *a, **k))[1]
+        try:
+            draw(m.Renderer())
+        finally:
+            m.Renderer.glass = original
+        return boxes
+
+    def middle(self, box):
+        return (box[0] + box[2]) // 2, (box[1] + box[3]) // 2
+
+    def test_language_cells(self):
+        boxes = self.drawn(lambda r: r.language_picker("en"))
+        self.assertEqual(len(boxes), len(m.LANGUAGE_CODES))
+        for i, box in enumerate(boxes):
+            self.assertEqual(m.picker_hit(*self.middle(box)), i)
+
+    def test_settings_rows_and_step_buttons(self):
+        cfg = dict(m.DEFAULTS)
+        rows = m.settings_rows("display")
+        boxes = self.drawn(lambda r: r.settings_screen(cfg, "display", None, []))
+        row_boxes = [b for b in boxes if b[2] - b[0] == m.LIST_X1 - m.LIST_X0]
+        self.assertEqual(len(row_boxes), len(rows))
+        for i, box in enumerate(row_boxes):
+            self.assertEqual(m.settings_hit(100, box[1] + 5, len(rows)), ("row", i, "row"))
+        step_boxes = [b for b in boxes if b[2] - b[0] == 40]
+        self.assertTrue(step_boxes)
+        for box in step_boxes:
+            part = m.settings_hit(*self.middle(box), len(rows))
+            self.assertIn(part[2], ("minus", "plus"))
+            self.assertEqual(m.SET_STEP[part[2]], (box[0], box[2]))
+
+    def test_rooms_rows(self):
+        rows = [{"id": str(i), "name": "Room %d" % i, "member": False, "available": True} for i in range(m.ROOM_ROWS)]
+        snap = {"stations": {}, "loading": False, "error": None, "loaded": True,
+                "rooms": {"leader": {"id": "L", "name": "Pi"}, "rows": rows}, "rooms_loading": False, "rooms_error": None}
+        boxes = self.drawn(lambda r: r.stations(snap, "rooms", 0, ""))
+        self.assertEqual(len(boxes), m.ROOM_ROWS)
+        for i, box in enumerate(boxes):
+            self.assertEqual(m.rooms_row_at(*self.middle(box)), i)
+            self.assertEqual((box[0], box[2]), (m.LIST_X0, m.LIST_X1))
+
+    def test_popup_and_menu_buttons(self):
+        for name, box in m.POPUP_BUTTONS.items():
+            self.assertEqual(m.popup_button_at(*self.middle(box)), name)
+        boxes = self.drawn(lambda r: r.power_menu(r.player(None, None, None)))
+        for name in m.POWER_ROWS:
+            self.assertIn(m.POWER_ROWS[name], boxes)
+
+
 class RoomsAndMenus(Base):
     def test_rooms_rows(self):
         for i in range(m.ROOM_ROWS):

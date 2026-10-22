@@ -108,6 +108,22 @@ SET_Y0, SET_ROW_H, SET_ROW_PITCH = 56, 40, 43
 SETTINGS_SECS = 60  # the screen closes by itself after this long without a tap
 
 
+# Shared by the rooms list, the settings rows and the language list: the left/right edge of a row, and the
+# switch (rooms, toggles) that sits against the right edge.
+LIST_X0, LIST_X1 = 16, 464
+SWITCH_W, SWITCH_H, SWITCH_MARGIN = 52, 26, 18
+
+
+# Settings: the - and + buttons of a "step" row, the info rows, and where the close cross starts.
+SET_STEP = {"minus": (288, 328), "plus": (416, 456)}
+INFO_ROW_H = 44
+CLOSE_X0 = 428
+
+
+# The language list: a grid of 2 columns (x of each), 5 rows.
+PICKER_X, PICKER_W, PICKER_H, PICKER_PITCH, PICKER_ROWS = (16, 244), 220, 44, 50, 5
+
+
 def tab_ranges(names):
     """Tab areas laid out by the width of their translated labels (12 px padding on both sides), so a long
     label in any language neither overlaps its neighbour nor leaves a tap area that does not match the text."""
@@ -138,7 +154,7 @@ def stations_hit(x, y):
 
 def rooms_row_at(x, y):
     """Row (0..ROOM_ROWS-1) of the rooms list at this point, or None."""
-    if 16 <= x < 464 and ROOM_Y0 <= y < ROOM_Y0 + ROOM_ROWS * ROOM_PITCH and (y - ROOM_Y0) % ROOM_PITCH < ROOM_ROW_H:
+    if LIST_X0 <= x < LIST_X1 and ROOM_Y0 <= y < ROOM_Y0 + ROOM_ROWS * ROOM_PITCH and (y - ROOM_Y0) % ROOM_PITCH < ROOM_ROW_H:
         return (y - ROOM_Y0) // ROOM_PITCH
     return None
 
@@ -156,21 +172,21 @@ def settings_hit(x, y, n_rows):
         for name, (x0, x1) in tab_ranges(SET_TAB_NAMES).items():
             if x0 <= x < x1:
                 return ("tab", name)
-        return ("close",) if x >= 428 else None
+        return ("close",) if x >= CLOSE_X0 else None
     i, within = divmod(y - SET_Y0, SET_ROW_PITCH)
-    if not (0 <= i < n_rows and within < SET_ROW_H and 16 <= x < 464):
+    if not (0 <= i < n_rows and within < SET_ROW_H and LIST_X0 <= x < LIST_X1):
         return None
-    part = "minus" if 288 <= x < 328 else "plus" if 416 <= x < 456 else "row"
+    part = next((name for name, (x0, x1) in SET_STEP.items() if x0 <= x < x1), "row")
     return ("row", i, part)
 
 
 def picker_hit(x, y):
     """The language picker: a 2-column grid. Returns an index into LANGUAGE_CODES, 'close' or None."""
     if y < SET_Y0 - 4:
-        return "close" if x >= 428 else None
-    row, within = divmod(y - SET_Y0, 50)
-    col = 0 if 16 <= x < 236 else 1 if 244 <= x < 464 else None
-    if col is None or within >= 44 or row > 4 or row * 2 + col >= len(LANGUAGE_CODES):
+        return "close" if x >= CLOSE_X0 else None
+    row, within = divmod(y - SET_Y0, PICKER_PITCH)
+    col = next((c for c, x0 in enumerate(PICKER_X) if x0 <= x < x0 + PICKER_W), None)
+    if col is None or within >= PICKER_H or row >= PICKER_ROWS or row * 2 + col >= len(LANGUAGE_CODES):
         return None
     return row * 2 + col
 
@@ -195,6 +211,7 @@ __all__ = [
     "button_at", "ST_COLS", "ST_ROWS", "ST_TILE_W", "ST_TILE_H", "ST_GAP", "ST_X0", "ST_Y0", "ST_TAB_NAMES",
     "ST_HEADER", "STATIONS_SECS", "ROOM_ROWS", "ROOM_Y0", "ROOM_ROW_H", "ROOM_PITCH", "ROOM_CONFIRM",
     "ROOM_CONFIRM_BUTTONS", "SET_TAB_NAMES", "SET_Y0", "SET_ROW_H", "SET_ROW_PITCH", "SETTINGS_SECS",
-    "tab_ranges", "stations_hit", "rooms_row_at", "confirm_button_at", "settings_hit", "picker_hit",
+    "LIST_X0", "LIST_X1", "SWITCH_W", "SWITCH_H", "SWITCH_MARGIN", "SET_STEP", "INFO_ROW_H", "CLOSE_X0", "PICKER_X",
+    "PICKER_W", "PICKER_H", "PICKER_PITCH", "PICKER_ROWS", "tab_ranges", "stations_hit", "rooms_row_at", "confirm_button_at", "settings_hit", "picker_hit",
     "popup_button_at", "power_button_at",
 ]

@@ -9,10 +9,11 @@ from .gfx import (
 )
 from .i18n import fmt_date, tr
 from .layout import (
-    GLASS_BAR, MAIN_BUTTONS, POPUP, POPUP_BAR, POPUP_BUTTONS, POWER_PANEL, POWER_ROWS, ROOM_CONFIRM,
-    ROOM_CONFIRM_BUTTONS, ROOM_PITCH, ROOM_ROWS, ROOM_ROW_H, ROOM_Y0, ROW_CY, SET_ROW_H, SET_ROW_PITCH,
-    SET_TAB_NAMES, SET_Y0, ST_COLS, ST_GAP, ST_HEADER, ST_ROWS, ST_TAB_NAMES, ST_TILE_H, ST_TILE_W, ST_X0,
-    ST_Y0, tab_ranges,
+    GLASS_BAR, INFO_ROW_H, LIST_X0, LIST_X1, MAIN_BUTTONS, PICKER_H, PICKER_PITCH, PICKER_W, PICKER_X, POPUP,
+    POPUP_BAR, POPUP_BUTTONS, POWER_PANEL, POWER_ROWS, ROOM_CONFIRM, ROOM_CONFIRM_BUTTONS, ROOM_PITCH, ROOM_ROWS,
+    ROOM_ROW_H, ROOM_Y0, ROW_CY, SET_ROW_H, SET_ROW_PITCH, SET_STEP, SET_TAB_NAMES, SET_Y0, ST_COLS, ST_GAP,
+    ST_HEADER, ST_ROWS, ST_TAB_NAMES, ST_TILE_H, ST_TILE_W, ST_X0, ST_Y0, SWITCH_H, SWITCH_MARGIN, SWITCH_W,
+    tab_ranges,
 )
 from .music_assistant import MAClient
 from .settings import LANGUAGE_CODES, LANG_NAMES, setting_text, settings_rows
@@ -298,18 +299,18 @@ class Renderer:
                    fill=FG_FAINT)
         for i, row in enumerate(items[page * ROOM_ROWS:(page + 1) * ROOM_ROWS]):
             y = ROOM_Y0 + i * ROOM_PITCH
-            self.glass(img, (16, y, 464, y + ROOM_ROW_H), radius=12, alpha=0.08, light=pressed == page * ROOM_ROWS + i)
+            self.glass(img, (LIST_X0, y, LIST_X1, y + ROOM_ROW_H), radius=12, alpha=0.08, light=pressed == page * ROOM_ROWS + i)
             off = not row["available"]
             d.text((34, y + 11), ellipsize(d, row["name"], font(16, True), 270), font=font(16, True),
                    fill=FG_FAINT if off else FG)
-            sx, sy = 464 - 18 - 52, y + 9
+            sx, sy = LIST_X1 - SWITCH_MARGIN - SWITCH_W, y + 9
             if off:
                 label = tr("rooms_offline")
                 d.text((sx - 14 - d.textlength(label, font=font(13)), y + 14), label, font=font(13), fill=FG_FAINT)
             on = row["member"]
-            d.rounded_rectangle((sx, sy, sx + 52, sy + 26), 13,
+            d.rounded_rectangle((sx, sy, sx + SWITCH_W, sy + SWITCH_H), SWITCH_H // 2,
                                 fill=(45, 45, 54) if off else (self.accent if on else (70, 70, 82)))
-            kx = sx + 52 - 14 if on else sx + 14
+            kx = sx + SWITCH_W - 14 if on else sx + 14
             d.ellipse((kx - 10, sy + 3, kx + 10, sy + 23), fill=(110, 110, 120) if off else FG)
 
     def room_confirm(self, img, name, add, pressed=None):
@@ -390,16 +391,16 @@ class Renderer:
         cx0, cx1 = ST_HEADER["close"]
         icon(d, "close", (cx0 + cx1) // 2, 26, 8, FG_DIM)
         if tab == "info":
-            self.glass(img, (16, SET_Y0, 464, SET_Y0 + len(info) * 44), radius=14, alpha=0.08)
+            self.glass(img, (LIST_X0, SET_Y0, LIST_X1, SET_Y0 + len(info) * INFO_ROW_H), radius=14, alpha=0.08)
             for i, (key, value) in enumerate(info):
-                y = SET_Y0 + i * 44
+                y = SET_Y0 + i * INFO_ROW_H
                 d.text((34, y + 13), tr(key), font=font(14), fill=FG_DIM)
                 text = ellipsize(d, value, font(15, True), 250)
                 d.text((446 - d.textlength(text, font=font(15, True)), y + 12), text, font=font(15, True), fill=FG)
         else:
             for i, sd in enumerate(settings_rows(tab)):
                 y = SET_Y0 + i * SET_ROW_PITCH
-                self.glass(img, (16, y, 464, y + SET_ROW_H), radius=12, alpha=0.08, light=pressed == i)
+                self.glass(img, (LIST_X0, y, LIST_X1, y + SET_ROW_H), radius=12, alpha=0.08, light=pressed == i)
                 action = sd["kind"] == "action"
                 d.text((34, y + 9), ellipsize(d, tr(sd["label"]), font(16, True), 410 if action else 250),
                        font=font(16, True), fill=FG_DIM if action else FG)
@@ -409,14 +410,16 @@ class Renderer:
                            fill=self.accent)
                 elif sd["kind"] == "toggle":
                     on = cfg[sd["key"]]
-                    sx, sy = 464 - 18 - 52, y + (SET_ROW_H - 26) // 2
-                    d.rounded_rectangle((sx, sy, sx + 52, sy + 26), 13, fill=self.accent if on else (70, 70, 82))
-                    kx = sx + 52 - 14 if on else sx + 14
+                    sx, sy = LIST_X1 - SWITCH_MARGIN - SWITCH_W, y + (SET_ROW_H - SWITCH_H) // 2
+                    d.rounded_rectangle((sx, sy, sx + SWITCH_W, sy + SWITCH_H), SWITCH_H // 2,
+                                        fill=self.accent if on else (70, 70, 82))
+                    kx = sx + SWITCH_W - 14 if on else sx + 14
                     d.ellipse((kx - 10, sy + 3, kx + 10, sy + 23), fill=FG)
                 elif sd["kind"] == "step":
-                    for symbol, bx in (("−", 288), ("+", 416)):
-                        self.glass(img, (bx, y + 5, bx + 40, y + SET_ROW_H - 5), radius=10, alpha=0.16)
-                        d.text((bx + 20, y + SET_ROW_H // 2), symbol, font=font(20, True), fill=FG, anchor="mm")
+                    for symbol, name in (("−", "minus"), ("+", "plus")):
+                        bx, bx1 = SET_STEP[name]
+                        self.glass(img, (bx, y + 5, bx1, y + SET_ROW_H - 5), radius=10, alpha=0.16)
+                        d.text(((bx + bx1) // 2, y + SET_ROW_H // 2), symbol, font=font(20, True), fill=FG, anchor="mm")
                     d.text((372, y + SET_ROW_H // 2), setting_text(sd, cfg[sd["key"]]), font=font(15, True),
                            fill=self.accent, anchor="mm")
         self._overlay(d, None, toast)
@@ -432,11 +435,11 @@ class Renderer:
         cx0, cx1 = ST_HEADER["close"]
         icon(d, "close", (cx0 + cx1) // 2, 26, 8, FG_DIM)
         for i, code in enumerate(LANGUAGE_CODES):
-            x, y = (16, 244)[i % 2], SET_Y0 + (i // 2) * 50
+            x, y = PICKER_X[i % 2], SET_Y0 + (i // 2) * PICKER_PITCH
             on = code == active
-            self.glass(img, (x, y, x + 220, y + 44), radius=12, alpha=0.12 if on else 0.08, light=pressed == i)
+            self.glass(img, (x, y, x + PICKER_W, y + PICKER_H), radius=12, alpha=0.12 if on else 0.08, light=pressed == i)
             if on:
-                d.rounded_rectangle((x, y, x + 219, y + 43), 12, outline=self.accent, width=2)
+                d.rounded_rectangle((x, y, x + PICKER_W - 1, y + PICKER_H - 1), 12, outline=self.accent, width=2)
             d.text((x + 18, y + 11), LANG_NAMES[code], font=font(17, True), fill=self.accent if on else FG)
         return img
 
