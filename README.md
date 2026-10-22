@@ -10,6 +10,11 @@ Shows title, artist, album, cover art, progress and a live spectrum, lets you co
 volume, pick radio stations, and resumes the last station after a restart. The UI is available in
 English, Dutch, French and German.
 
+![The screens: player with cover art, radio with analyser, player without cover, station picker, rooms, idle clock, night mode, menu and settings](docs/screenshots/overview.png)
+
+*The pictures are drawn by the program's own renderer from made-up data (see `tools/screenshots.py`), not photos
+of the panel.*
+
 ## How it works
 
 `ma_display.py` draws with Pillow straight onto `/dev/fb0` (RGB565) and reads the touch panel via evdev.
@@ -145,6 +150,9 @@ USB wifi dongle); a cable is the reliable alternative.
 
 ## Rooms: who is in the group
 
+<p><img src="docs/screenshots/stations.png" width="320" alt="Station picker with the Favourites, All and Rooms tabs">
+<img src="docs/screenshots/rooms.png" width="320" alt="Rooms tab: players that are or could be in the group"></p>
+
 Open the station picker and choose the **Rooms** tab. At the top is this player; below it every player that is in
 its group or could be (displays are left out): members first, players that are offline last and greyed out. A
 switch on the right shows who is in the group.
@@ -157,6 +165,9 @@ This uses the Music Assistant API (`players/all`, and `players/cmd/set_members` 
 group: its group message only carries the playback state, the group id and the group name.
 
 ## The idle screen
+
+<p><img src="docs/screenshots/idle.png" width="320" alt="Idle screen: analog clock, date and the last-station tile">
+<img src="docs/screenshots/idle-night.png" width="320" alt="Night mode: a small, dim digital time"></p>
 
 After `clock_after_min` minutes without playback the player screen makes way for an idle screen: an analog
 clock with a sweeping second hand, the weekday and date, and a tile with the last station (**tap the tile to
@@ -175,6 +186,9 @@ afterimage; the drift avoids that. Its backlight cannot be dimmed from software,
 power menu (or a socket timer).
 
 ## Menu and settings
+
+<p><img src="docs/screenshots/menu.png" width="320" alt="Menu: Settings, Restart, Shut down, Cancel">
+<img src="docs/screenshots/settings.png" width="320" alt="Settings, Display tab"></p>
 
 **Long-press the clock** in the top-right corner of the player screen (about 1.5 s). A menu opens with
 **Settings**, **Restart**, **Shut down** and **Cancel**.
@@ -322,6 +336,7 @@ systemctl start ma-display
 
 - Calibrate touch: `systemctl stop ma-display && /opt/ma-display/venv/bin/python /opt/ma-display/ma_display.py --calibrate && systemctl start ma-display`
 - Screenshot of the screen: `fbshot /tmp/fb.png`
+- Redraw the pictures in this README: `python3 tools/screenshots.py` (writes `docs/screenshots/`)
 - Test picture without a display: `ma_display.py --demo --png /tmp/demo.png` (set `LANG=de_DE.UTF-8` to try a language)
 - Config: `/etc/ma-display/config.json`; state: `/var/lib/ma-display`
 
