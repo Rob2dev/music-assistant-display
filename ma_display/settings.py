@@ -5,6 +5,7 @@ import os
 import socket
 
 from .i18n import tr
+from .strings import NAMES
 
 log = logging.getLogger("ma-display")
 
@@ -12,8 +13,7 @@ log = logging.getLogger("ma-display")
 # Settings that can be changed on the screen (menu -> Settings). They are saved in
 # state_dir/settings.json, which the service may write (it cannot write /etc/ma-display/config.json, and
 # that file may hold the token), and they win over config.json. The last entry is an action, not a setting.
-LANG_NAMES = {"en": "English", "nl": "Nederlands", "fr": "Français", "de": "Deutsch", "es": "Español",
-              "it": "Italiano", "pt": "Português", "pl": "Polski", "sv": "Svenska", "cs": "Čeština"}
+LANG_NAMES = dict(NAMES)  # each language file says what it is called in itself (strings/<code>.py)
 
 
 LANGUAGE_CODES = list(LANG_NAMES)

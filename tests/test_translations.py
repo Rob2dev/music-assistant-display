@@ -34,6 +34,15 @@ class Completeness(Base):
 
     def test_every_language_has_a_name_for_the_picker(self):
         self.assertEqual(set(m.LANG_NAMES), set(m.STRINGS))
+        self.assertEqual(len(set(m.LANG_NAMES.values())), len(m.LANG_NAMES))          # no two languages share a name
+        self.assertTrue(all(name.strip() for name in m.LANG_NAMES.values()))
+
+    def test_every_language_file_is_registered(self):
+        # a file added to ma_display/strings/ but forgotten in CODES would silently never show up
+        folder = os.path.join(os.path.dirname(m.__file__), "strings")
+        files = {f[:-3] for f in os.listdir(folder) if f.endswith(".py") and f != "__init__.py"}
+        self.assertEqual(files, set(m.STRINGS), "files and CODES differ")
+        self.assertEqual(list(m.STRINGS)[0], "en")                                      # English first: it is the fallback
 
 
 class Dates(Base):

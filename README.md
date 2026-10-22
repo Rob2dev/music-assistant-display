@@ -168,8 +168,9 @@ The service runs as `sendspin-cli` because its control socket is owner-only (060
 | `idle_fps` | how often the hands are redrawn (default 4) |
 | `calibration` | touch calibration, written by `--calibrate` (see "Touch calibration") |
 
-Translations live in `ma_display/strings.py`. To add a language, copy the `en` block, translate it, add it to
-`STRINGS` and add its own name to `LANG_NAMES` in `ma_display/settings.py` (shown in the language list),
+Translations live in `ma_display/strings/`, one file per language. To add a language, copy `en.py` to `xx.py`,
+translate it, set `NAME` (what the language is called in itself, shown in the language list) and add the code to
+`CODES` in `ma_display/strings/__init__.py`. `tests/test_translations.py` tells you what is missing or forgotten,
 then run `tools/screenshots.py` or look at the screens to check that the texts fit. Missing keys fall back to
 English. The font (DejaVu Sans) covers Latin, Cyrillic and Greek; Chinese, Japanese, Korean, Thai and Hindi need
 another font, and right-to-left languages would need the layout mirrored.
@@ -400,7 +401,8 @@ ma_display/
   gfx.py             colours, fonts and small drawing helpers
   settings.py        the settings that can be changed on screen, and settings.json
   config.py          defaults, config.json, touch calibration
-  i18n.py, strings.py  looking texts up; all texts, one block per language
+  i18n.py            looking texts up (tr, set_language, dates)
+  strings/           all texts, one file per language (en.py, nl.py, ...)
   hardware.py        framebuffer, touch panel, network check
   player_socket.py   the control socket of sendspin-cli
   sendspin.py        our own Sendspin client (metadata, artwork, spectrum)
