@@ -17,7 +17,8 @@ of the panel.*
 
 ## How it works
 
-`ma_display.py` draws with Pillow straight onto `/dev/fb0` (RGB565) and reads the touch panel via evdev.
+The `ma_display` package draws with Pillow straight onto the panel's framebuffer (RGB565) and reads the touch panel via
+evdev. See [Code layout](#code-layout).
 
 | What | Source | Token? |
 |---|---|---|
@@ -84,7 +85,7 @@ Raspberry Pi OS (Debian 13 "trixie"), kernel 6.18 (`rpt-rpi-v7`) on a Pi 2.
 - The `piscreen` device-tree overlay, with its `drm` parameter, loads the DRM driver `ili9486`
   (through `drm_mipi_dbi`) for the panel and `ads7846` for the XPT2046 touch controller. Without `drm`
   you get the older fbtft driver instead.
-- DRM provides the framebuffer `/dev/fb0` (name `ili9486drmfb`) that `ma_display.py` draws on. It needs
+- DRM provides the framebuffer `/dev/fb0` (name `ili9486drmfb`) that the program draws on. It needs
   the stock KMS line `dtoverlay=vc4-kms-v3d` that Raspberry Pi OS already has in `config.txt`.
 - The touch panel shows up as the input device `ADS7846 Touchscreen` (config key `touch_name`).
 - `rotate=` in the overlay line turns the panel. The program expects landscape 480x320, so keep
@@ -106,7 +107,7 @@ the number depends on the order the drivers load in. Pin it with e.g. `"fb": "/d
 
 ### Rotation
 
-The rotation is **not** a setting of `ma_display.py`. The panel driver applies it (`rotate=` on the
+The rotation is **not** a setting of the program. The panel driver applies it (`rotate=` on the
 `piscreen` overlay line in `/boot/firmware/config.txt`, active after a reboot) and the program draws a
 fixed landscape 480x320 picture. Only `rotate=0` has been tested.
 
@@ -139,7 +140,7 @@ Get the code: `git clone https://github.com/Rob2dev/music-assistant-display`.
 2. apt packages and venv: see `requirements.txt`.
 3. Network: the Pi has to be able to reach Music Assistant on its own (see "Network" below).
 4. Place the files:
-   - `ma_display.py` → `/opt/ma-display/`
+   - the `ma_display/` folder → `/opt/ma-display/` (so `/opt/ma-display/ma_display/__main__.py` exists)
    - `bin/*` → `/usr/local/bin/`
    - `systemd/ma-display.service` → `/etc/systemd/system/`, then `systemctl enable --now ma-display`
 5. Optional, for the power menu: `polkit/50-ma-display-power.rules` → `/etc/polkit-1/rules.d/` (see "Power menu").
@@ -152,7 +153,7 @@ The service runs as `sendspin-cli` because its control socket is owner-only (060
 ## Configuration
 
 `/etc/ma-display/config.json`; an example is in `config.example.json`. Every key is in `DEFAULTS` in
-`ma_display.py`.
+`ma_display/config.py`.
 
 | Key | Meaning |
 |---|---|
@@ -167,8 +168,8 @@ The service runs as `sendspin-cli` because its control socket is owner-only (060
 | `idle_fps` | how often the hands are redrawn (default 4) |
 | `calibration` | touch calibration, written by `--calibrate` (see "Touch calibration") |
 
-Translations live in the `STRINGS` table at the top of `ma_display.py`. To add a language, copy the
-`en` block, translate it, add it to `STRINGS` and to `LANG_NAMES` (its own name, shown in the language list),
+Translations live in `ma_display/strings.py`. To add a language, copy the `en` block, translate it, add it to
+`STRINGS` and add its own name to `LANG_NAMES` in `ma_display/settings.py` (shown in the language list),
 then run `tools/screenshots.py` or look at the screens to check that the texts fit. Missing keys fall back to
 English. The font (DejaVu Sans) covers Latin, Cyrillic and Greek; Chinese, Japanese, Korean, Thai and Hindi need
 another font, and right-to-left languages would need the layout mirrored.
@@ -366,7 +367,7 @@ changing the rotation)**; otherwise taps land in the wrong place.
 
 ```
 systemctl stop ma-display
-/opt/ma-display/venv/bin/python /opt/ma-display/ma_display.py --calibrate
+cd /opt/ma-display && venv/bin/python -m ma_display --calibrate
 systemctl start ma-display
 ```
 
@@ -377,15 +378,40 @@ systemctl start ma-display
   edges; `min` larger than `max` means that axis is inverted). The file keeps its owner and mode, so a
   token in it stays private.
 - Check it by tapping the buttons. If taps are consistently off, calibrate again and aim at the centre of
-  the crosshair. `ma_display.py --debug` logs the raw values of every tap.
+  the crosshair. `python -m ma_display --debug` logs the raw values of every tap.
 
 ## Handy
 
-- Calibrate touch: `systemctl stop ma-display && /opt/ma-display/venv/bin/python /opt/ma-display/ma_display.py --calibrate && systemctl start ma-display`
+- Calibrate touch: `systemctl stop ma-display && cd /opt/ma-display && venv/bin/python -m ma_display --calibrate; systemctl start ma-display`
 - Screenshot of the screen: `fbshot /tmp/fb.png`
 - Redraw the pictures in this README: `python3 tools/screenshots.py` (writes `docs/screenshots/`)
-- Test picture without a display: `ma_display.py --demo --png /tmp/demo.png` (set `LANG=de_DE.UTF-8` to try a language)
+- Test picture without a display: `python -m ma_display --demo --png /tmp/demo.png` (set `LANG=de_DE.UTF-8` to try a language)
 - Config: `/etc/ma-display/config.json`; state: `/var/lib/ma-display`
+
+## Code layout
+
+```
+ma_display/
+  __main__.py        entry point (python -m ma_display): arguments, logging
+  app.py             the application: merges state, handles taps, runs the main loop
+  renderer.py        draws every screen
+  layout.py          coordinates of the screens and the tap areas that match them
+  widgets.py         scrolling text, the spectrum, the idle clock
+  gfx.py             colours, fonts and small drawing helpers
+  settings.py        the settings that can be changed on screen, and settings.json
+  config.py          defaults, config.json, touch calibration
+  i18n.py, strings.py  looking texts up; all texts, one block per language
+  hardware.py        framebuffer, touch panel, network check
+  player_socket.py   the control socket of sendspin-cli
+  sendspin.py        our own Sendspin client (metadata, artwork, spectrum)
+  music_assistant.py the Music Assistant API (stations, group, last played)
+  calibrate.py, demo.py
+```
+
+Imports only point downwards, in six layers, so there are no cycles: `strings`, `gfx`, `demo`, `player_socket`,
+`sendspin`, `music_assistant` (import nothing from the package) → `i18n`, `hardware` → `settings`, `widgets` →
+`config`, `layout` → `renderer` → `app`, `calibrate` → `__main__`. `ma_display/__init__.py` re-exports
+everything, so `import ma_display as m` still gives you `m.Renderer`, `m.tr`, ... as the tests and `tools/` use it.
 
 ## Tests
 

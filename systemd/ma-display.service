@@ -11,7 +11,11 @@ SupplementaryGroups=video input
 StateDirectory=ma-display
 # Switch the tty1 console off (as root) so it does not draw over the picture.
 ExecStartPre=+/usr/local/bin/ma-display-tty 1
-ExecStart=/opt/ma-display/venv/bin/python /opt/ma-display/ma_display.py
+# Precompile the program as root: the service user cannot write the bytecode cache, and without it every start
+# compiles all modules again (about half a second slower on a Pi 2). A failure here is not fatal.
+ExecStartPre=-+/opt/ma-display/venv/bin/python -m compileall -q /opt/ma-display/ma_display
+WorkingDirectory=/opt/ma-display
+ExecStart=/opt/ma-display/venv/bin/python -m ma_display
 ExecStopPost=+/usr/local/bin/ma-display-tty 0
 Restart=always
 RestartSec=3
