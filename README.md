@@ -134,7 +134,7 @@ corners.
 
 ## Installing on the Pi
 
-Get the code: `git clone https://github.com/Rob2dev/music-assistant-display`.
+Get the code: `git clone https://github.com/2devNL/music-assistant-display`.
 
 1. Add `boot/config.txt.snippet` to `/boot/firmware/config.txt` and reboot (see above).
 2. apt packages and venv: see `requirements.txt`.
